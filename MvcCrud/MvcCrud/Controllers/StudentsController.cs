@@ -77,7 +77,7 @@ namespace MvcCrud.Controllers
             {
                 existingStudent.Name = student.Name;
                 existingStudent.RegistrationNo = student.RegistrationNo;
-                //existingStudent.Department = null;
+                existingStudent.Department = null;
                 existingStudent.DepartmentId = student.DepartmentId;
 
                 //_context.Entry(student.Department).State = System.Data.Entity.EntityState.Unchanged;
