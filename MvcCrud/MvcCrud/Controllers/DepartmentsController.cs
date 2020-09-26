@@ -1,6 +1,7 @@
 ﻿using MvcCrud.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -58,18 +59,22 @@ namespace MvcCrud.Controllers
         public ActionResult Delete(int id)
         {
             var department = _context.Departments.Find(id);
+            //var department = _context.Departments.Where(x => x.Id == id).Include(x => x.Students).FirstOrDefault();
+
             return View(department);
         }
 
         [HttpPost]
         public ActionResult Delete(Department department)
         {
-            if (ModelState.IsValid)
-            {
-                //_context.Departments.Remove(department);
-                _context.Entry(department).State = System.Data.Entity.EntityState.Deleted;
-                _context.SaveChanges();
-            }
+            department = _context.Departments.Find(department.Id);
+            //department = _context.Departments.Where(x => x.Id == department.Id).Include(x => x.Students).FirstOrDefault();
+;
+            //_context.Students.RemoveRange(department.Students);
+
+            _context.Departments.Remove(department);
+            _context.SaveChanges();
+
             return RedirectToAction("Index");
         }
 
