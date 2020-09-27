@@ -1,0 +1,28 @@
+﻿@model MvcRepoCrud.Entities.Department
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-info">Create New Department</h2>
+<hr />
+
+<form method="post">
+    <div class="row">
+        <div class="col-md-10">
+            <div class="form-group">
+                <label>Name <span class="text-danger">*</span></label>
+                <input name="Name" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label>Abbr <span class="text-danger">*</span></label>
+                <input name="Abbr" class="form-control" />
+            </div>
+        </div>
+    </div>
+
+    <button href="@Url.Action("Create", "Departments")" class="btn btn-primary">Save</button>
+    <a href="@Url.Action("Index", "Departments")" class="btn btn-danger">Cancel</a>
+</form>

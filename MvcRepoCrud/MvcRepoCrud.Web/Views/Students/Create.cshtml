@@ -1,0 +1,40 @@
+﻿@model MvcRepoCrud.Entities.Student
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-info">Create New Student</h2>
+<hr />
+
+<form method="post">
+    <div class="row">
+        <div class="col-md-10">
+            <div class="form-group">
+                <label>Name <span class="text-danger">*</span></label>
+                <input name="Name" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label>Registration No. <span class="text-danger">*</span></label>
+                <input name="RegistrationNo" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label>Department</label>
+                <select name="DepartmentId" class="form-control">
+                    <option value="0">Select Department</option>
+                    @foreach (var dept in Model.Departments)
+                    {
+                        <option value="@dept.Id">@dept.Name</option>
+                    }
+                </select>
+            </div>
+
+        </div>
+    </div>
+
+    <button href="@Url.Action("Create", "Students")" class="btn btn-primary">Save</button>
+    <a href="@Url.Action("Index", "Students")" class="btn btn-danger">Cancel</a>
+</form>

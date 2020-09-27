@@ -1,0 +1,16 @@
+F:\Z-ASP\MvcRepoCrud\MvcRepoCrud.Database\bin\Debug\MvcRepoCrud.Database.dll.config
+F:\Z-ASP\MvcRepoCrud\MvcRepoCrud.Database\bin\Debug\MvcRepoCrud.Database.dll
+F:\Z-ASP\MvcRepoCrud\MvcRepoCrud.Database\bin\Debug\MvcRepoCrud.Database.pdb
+F:\Z-ASP\MvcRepoCrud\MvcRepoCrud.Database\bin\Debug\EntityFramework.dll
+F:\Z-ASP\MvcRepoCrud\MvcRepoCrud.Database\bin\Debug\EntityFramework.SqlServer.dll
+F:\Z-ASP\MvcRepoCrud\MvcRepoCrud.Database\bin\Debug\MvcRepoCrud.Entities.dll
+F:\Z-ASP\MvcRepoCrud\MvcRepoCrud.Database\bin\Debug\MvcRepoCrud.Entities.pdb
+F:\Z-ASP\MvcRepoCrud\MvcRepoCrud.Database\bin\Debug\EntityFramework.xml
+F:\Z-ASP\MvcRepoCrud\MvcRepoCrud.Database\bin\Debug\EntityFramework.SqlServer.xml
+F:\Z-ASP\MvcRepoCrud\MvcRepoCrud.Database\obj\Debug\MvcRepoCrud.Database.csprojAssemblyReference.cache
+F:\Z-ASP\MvcRepoCrud\MvcRepoCrud.Database\obj\Debug\MvcRepoCrud.Database.csproj.CoreCompileInputs.cache
+F:\Z-ASP\MvcRepoCrud\MvcRepoCrud.Database\obj\Debug\MvcRepoCrud.Database.csproj.CopyComplete
+F:\Z-ASP\MvcRepoCrud\MvcRepoCrud.Database\obj\Debug\MvcRepoCrud.Database.dll
+F:\Z-ASP\MvcRepoCrud\MvcRepoCrud.Database\obj\Debug\MvcRepoCrud.Database.pdb
+F:\Z-ASP\MvcRepoCrud\MvcRepoCrud.Database\obj\Debug\MvcRepoCrud.Database.Migrations.initial.resources
+F:\Z-ASP\MvcRepoCrud\MvcRepoCrud.Database\obj\Debug\MvcRepoCrud.Database.csproj.GenerateResource.cache

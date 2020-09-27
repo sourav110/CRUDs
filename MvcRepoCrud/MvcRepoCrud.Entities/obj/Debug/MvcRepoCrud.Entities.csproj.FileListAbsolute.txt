@@ -1,0 +1,6 @@
+F:\Z-ASP\MvcRepoCrud\MvcRepoCrud.Entities\bin\Debug\MvcRepoCrud.Entities.dll
+F:\Z-ASP\MvcRepoCrud\MvcRepoCrud.Entities\bin\Debug\MvcRepoCrud.Entities.pdb
+F:\Z-ASP\MvcRepoCrud\MvcRepoCrud.Entities\obj\Debug\MvcRepoCrud.Entities.csprojAssemblyReference.cache
+F:\Z-ASP\MvcRepoCrud\MvcRepoCrud.Entities\obj\Debug\MvcRepoCrud.Entities.csproj.CoreCompileInputs.cache
+F:\Z-ASP\MvcRepoCrud\MvcRepoCrud.Entities\obj\Debug\MvcRepoCrud.Entities.dll
+F:\Z-ASP\MvcRepoCrud\MvcRepoCrud.Entities\obj\Debug\MvcRepoCrud.Entities.pdb
