@@ -1,0 +1,42 @@
+﻿@model MvcAjaxCrud.Models.Student
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-info">Edit Student</h2>
+<hr />
+
+<form method="post">
+    <input name="Id" value="@Model.Id" hidden />
+
+    <div class="row">
+        <div class="col-md-10">
+            <div class="form-group">
+                <label>Name <span class="text-danger">*</span></label>
+                <input name="Name" value="@Model.Name" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label>Abbr <span class="text-danger">*</span></label>
+                <input name="RegistrationNo" value="@Model.RegistrationNo" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label>Department</label>
+                <select name="DepartmentId" class="form-control">
+                    <option value="0">Select Department</option>
+                    @foreach (var dept in Model.Departments)
+                    {
+                        var selected = dept.Id == Model.DepartmentId ? "selected" : string.Empty;
+                        <option value="@dept.Id" @selected>@dept.Name</option>
+                    }
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <button href="@Url.Action("Edit", "Students")" class="btn btn-primary">Update</button>
+    <a href="@Url.Action("Index", "Students")" class="btn btn-danger">Cancel</a>
+</form>
