@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CoreMvcCrud.Database;
 using CoreMvcCrud.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CoreMvcCrud.Controllers
 {

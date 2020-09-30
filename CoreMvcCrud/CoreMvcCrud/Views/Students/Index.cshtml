@@ -1,0 +1,56 @@
+﻿@model IEnumerable<CoreMvcCrud.Entities.Student>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-info">Students</h2>
+<hr />
+
+<table class="table table-bordered table-striped">
+    <thead class="thead-inverse">
+        <tr>
+            <th class="font-weight-bold">Name</th>
+            <th class="font-weight-bold">Registration No.</th>
+            <th class="font-weight-bold">Department</th>
+            <th class="font-weight-bold">Actions <a asp-action="Create" class="btn btn-info">Create New</a></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Count() > 0)
+        {
+            @foreach (var student in Model)
+            {
+                <tr>
+                    <td>
+                        @student.Name
+                    </td>
+                    <td> 
+                        @student.RegistrationNo
+                    </td>
+                    <td> 
+                        @student.Department.Name
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@student.Id">Edit</a> |
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@student.Id">Delete</a> |
+                        <a class="btn btn-success" asp-action="Details" asp-route-id="@student.Id">View Details</a>
+                    </td>
+                </tr>
+            }
+        }
+
+        else
+        {
+            <tr>
+                <td class="text-danger" colspan="5">
+                    No Departments found
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+

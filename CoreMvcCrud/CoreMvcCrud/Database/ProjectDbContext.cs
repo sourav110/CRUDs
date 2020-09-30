@@ -13,8 +13,6 @@ namespace CoreMvcCrud.Database
         public ProjectDbContext(DbContextOptions<ProjectDbContext> options): base(options)
         {}
 
-        public DbSet<Test> Tests { get; set; }
-
         public DbSet<Department> Departments { get; set; }
         public DbSet<Student> Students { get; set; }
     }
