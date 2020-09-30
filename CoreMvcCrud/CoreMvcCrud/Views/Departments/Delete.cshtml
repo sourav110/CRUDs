@@ -1,0 +1,26 @@
+﻿@model CoreMvcCrud.Entities.Department
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-info">Delte Department</h2>
+<hr />
+<h3 class="text-info">Are you sure you want to delete this department?</h3>
+
+<form method="post" asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="row">
+        <div class="col-md-10">
+            <div class="form-group">
+                <input asp-for="Name" class="form-control" readonly/>
+            </div>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="Index" class="btn btn-primary">Cancel</a>
+</form>
+
