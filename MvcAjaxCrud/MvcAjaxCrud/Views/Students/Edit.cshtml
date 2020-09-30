@@ -2,13 +2,12 @@
 
 @{
     ViewBag.Title = "Edit";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2 class="text-info">Edit Student</h2>
 <hr />
 
-<form method="post">
+<form method="post" id="editStudent">
     <input name="Id" value="@Model.Id" hidden />
 
     <div class="row">
@@ -37,6 +36,31 @@
         </div>
     </div>
 
-    <button href="@Url.Action("Edit", "Students")" class="btn btn-primary">Update</button>
-    <a href="@Url.Action("Index", "Students")" class="btn btn-danger">Cancel</a>
+    <button id="btnUpdate" class="btn btn-success" type="button">Update</button>
+    <button id="btnCancel" class="btn btn-warning" type="button">Cancel</button>
 </form>
+
+<script>
+    $("#btnUpdate").click(function () {
+
+        $.ajax({
+                type: 'POST',
+                url: '@Url.Action("Edit", "Students")',
+                data: $("#editStudent").serialize()
+
+            }).done(function (response) {
+                $("#tableContainer").html(response);
+                $("#actionContainer").html("");
+
+                focusAction("tableContainer");
+
+            }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("Failed to Save")
+            });
+    });
+
+    $("#btnCancel").click(function () {
+        $("#actionContainer").html("");
+        focusAction("tableContainer");
+    });
+</script>

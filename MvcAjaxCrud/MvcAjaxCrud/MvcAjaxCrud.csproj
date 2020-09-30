@@ -185,10 +185,11 @@
     <Content Include="Views\Students\Delete.cshtml" />
     <Content Include="Views\Students\Details.cshtml" />
     <Content Include="Views\Departments\Index.cshtml" />
-    <Content Include="Views\Departments\Create.cshtml" />
     <Content Include="Views\Departments\Edit.cshtml" />
-    <Content Include="Views\Departments\Delete.cshtml" />
     <Content Include="Views\Departments\Details.cshtml" />
+    <Content Include="Views\Departments\Create.cshtml" />
+    <Content Include="Views\Departments\DepartmentTable.cshtml" />
+    <Content Include="Views\Students\StudentTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

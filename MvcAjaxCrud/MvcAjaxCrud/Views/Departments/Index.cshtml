@@ -1,47 +1,19 @@
-﻿@model List<MvcAjaxCrud.Models.Department>
-
+﻿
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2 class="text-info">Departments</h2>
-<hr />
+<div class="container">
+    <div id="actionContainer">
+        @* child actions to be rendered here *@
+    </div>
 
-<table class="table table-bordered table-striped" id="productsTable">
-    <thead class="thead-inverse">
-        <tr>
-            <th class="font-weight-bold">Department Name</th>
-            <th class="font-weight-bold">Abbr</th>
-            <th class="font-weight-bold">Actions <a href="@Url.Action("Create", "Departments")" class="btn btn-info">Create New</a></th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (Model != null && Model.Count() > 0)
-        {
-            foreach (var dept in Model)
-            {
-                <tr>
-                    <td>@dept.Name</td>
-                    <td>@dept.Abbr</td>
-                    <td>
-                        <a class="btn btn-primary" href="@Url.Action("Edit", "Departments", new { id = dept.Id})">Edit</a>
-                        <a class="btn btn-danger" href="@Url.Action("Delete", "Departments", new { id = dept.Id})">Delete</a>
-                        <a class="btn btn-success" href="@Url.Action("Details", "Departments", new { id = dept.Id})">View Details</a>
-                    </td>
-                </tr>
-
-            }
+    <div id="tableContainer">
+        @{
+            Html.RenderAction("DepartmentTable");
         }
-        else
-        {
-            <tr>
-                <td class="text-danger" colspan="5">
-                    No Departments found
-                </td>
-            </tr>
-        }
+    </div>
+</div>
 
-    </tbody>
-</table>
 

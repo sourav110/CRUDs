@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace MvcAjaxCrud.Controllers
 {
@@ -15,14 +16,26 @@ namespace MvcAjaxCrud.Controllers
         // GET: Departments
         public ActionResult Index()
         {
+            return View();
+        }
+
+        public ActionResult DepartmentTable(string searchText)
+        {
             var departments = _context.Departments.ToList();
-            return View(departments);
+
+            if (!string.IsNullOrEmpty(searchText))
+            {
+                departments = departments.Where(dept => dept.Name != null && dept.Name.ToLower()
+                                         .Contains(searchText.ToLower())).ToList();
+            }
+
+            return PartialView(departments);
         }
 
         [HttpGet]
         public ActionResult Create()
         {
-            return View();
+            return PartialView();
         }
 
         [HttpPost]
@@ -33,7 +46,7 @@ namespace MvcAjaxCrud.Controllers
                 _context.Departments.Add(department);
                 _context.SaveChanges();
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("DepartmentTable");
         }
 
 
@@ -41,7 +54,7 @@ namespace MvcAjaxCrud.Controllers
         public ActionResult Edit(int id)
         {
             var department = _context.Departments.Find(id);
-            return View(department);
+            return PartialView(department);
         }
 
         [HttpPost]
@@ -52,37 +65,25 @@ namespace MvcAjaxCrud.Controllers
                 _context.Entry(department).State = System.Data.Entity.EntityState.Modified;
                 _context.SaveChanges();
             }
-            return RedirectToAction("Index");
-        }
-
-        [HttpGet]
-        public ActionResult Delete(int id)
-        {
-            var department = _context.Departments.Find(id);
-            //var department = _context.Departments.Where(x => x.Id == id).Include(x => x.Students).FirstOrDefault();
-
-            return View(department);
+            return RedirectToAction("DepartmentTable");
         }
 
         [HttpPost]
-        public ActionResult Delete(Department department)
+        public ActionResult Delete(int id)
         {
-            department = _context.Departments.Find(department.Id);
-            //department = _context.Departments.Where(x => x.Id == department.Id).Include(x => x.Students).FirstOrDefault();
-            ;
-            //_context.Students.RemoveRange(department.Students);
+            var department = _context.Departments.Find(id);
 
             _context.Departments.Remove(department);
             _context.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("DepartmentTable");
         }
 
         [HttpGet]
         public ActionResult Details(int id)
         {
             var department = _context.Departments.Find(id);
-            return View(department);
+            return PartialView(department);
         }
     }
 }

@@ -2,13 +2,12 @@
 
 @{
     ViewBag.Title = "Create";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2 class="text-info">Create New Department</h2>
 <hr />
 
-<form method="post">
+<form method="post" id="createDepartment">
     <div class="row">
         <div class="col-md-10">
             <div class="form-group">
@@ -23,6 +22,43 @@
         </div>
     </div>
 
-    <button href="@Url.Action("Create", "Departments")" class="btn btn-primary">Save</button>
-    <a href="@Url.Action("Index", "Departments")" class="btn btn-danger">Cancel</a>
+    <button id="btnSave" class="btn btn-success" type="button">Save</button>
+    <button id="btnCancel" class="btn btn-warning" type="button">Cancel</button>
+
 </form>
+<hr />
+
+<script>
+    $("#btnSave").click(function () {
+
+        //if ($("#createDepartment").valid()) {
+
+
+        //}
+        //else {
+        //    alert("Failed to Save")
+        //}
+
+        $.ajax({
+                type: 'POST',
+                url: '@Url.Action("Create", "Departments")',
+                data: $("#createDepartment").serialize()
+
+            }).done(function (response) {
+                $("#tableContainer").html(response);
+                $("#actionContainer").html("");
+
+                focusAction("tableContainer");
+
+            }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("Failed to Save")
+            });
+    });
+
+    $("#btnCancel").click(function () {
+        $("#actionContainer").html("");
+        focusAction("tableContainer");
+    });
+</script>
+
+

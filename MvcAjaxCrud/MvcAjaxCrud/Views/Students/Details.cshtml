@@ -2,7 +2,6 @@
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2 class="text-info">Details</h2>
@@ -29,5 +28,12 @@
             </div>
         </div>
     </div>
-    <a href="@Url.Action("Index", "Students")" class="btn btn-warning">Back to List</a>
+    <button id="btnClose" class="btn btn-warning" type="button">Close</button>
 </form>
+
+<script>
+    $("#btnClose").click(function () {
+        $("#actionContainer").html("");
+        focusAction("tableContainer");
+    });
+</script>

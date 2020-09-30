@@ -6,6 +6,7 @@ using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace MvcAjaxCrud.Controllers
 {
@@ -22,13 +23,27 @@ namespace MvcAjaxCrud.Controllers
             return View(students);
         }
 
+        public ActionResult StudentTable(string searchText)
+        {
+            var students = _context.Students.ToList();
+            //var students = _context.Students.Include(x=> x.Department).ToList();
+
+            if (!string.IsNullOrEmpty(searchText))
+            {
+                students = students.Where(std => std.Name != null && std.Name.ToLower()
+                                         .Contains(searchText.ToLower())).ToList();
+            }
+
+            return PartialView(students);
+        }
+
         [HttpGet]
         public ActionResult Create()
         {
             Student student = new Student();
             student.Departments = _context.Departments.ToList();
 
-            return View(student);
+            return PartialView(student);
         }
 
         [HttpPost]
@@ -48,7 +63,7 @@ namespace MvcAjaxCrud.Controllers
                 _context.Students.Add(newStudent);
                 _context.SaveChanges();
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("StudentTable");
         }
 
         [HttpGet]
@@ -65,7 +80,7 @@ namespace MvcAjaxCrud.Controllers
 
             student.Departments = _context.Departments.ToList();
 
-            return View(student);
+            return PartialView(student);
         }
 
         [HttpPost]
@@ -87,35 +102,26 @@ namespace MvcAjaxCrud.Controllers
 
                 _context.SaveChanges();
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("StudentTable");
         }
 
 
-        [HttpGet]
+        [HttpPost]
         public ActionResult Delete(int id)
         {
             var student = _context.Students.Find(id);
-            //var student = _context.Students.FirstOrDefault(x => x.Id == id);
-
-            return View(student);
-        }
-
-        [HttpPost]
-        public ActionResult Delete(Student student)
-        {
-            student = _context.Students.Find(student.Id);
 
             _context.Students.Remove(student);
             _context.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("StudentTable");
         }
 
         [HttpGet]
         public ActionResult Details(int id)
         {
             var student = _context.Students.Find(id);
-            return View(student);
+            return PartialView(student);
         }
     }
 }

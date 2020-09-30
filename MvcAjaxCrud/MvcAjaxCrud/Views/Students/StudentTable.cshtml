@@ -1,0 +1,181 @@
+﻿@model List<MvcAjaxCrud.Models.Student>
+
+@{
+    ViewBag.Title = "StudentTable";
+}
+
+<h2 class="text-info text-center">Students</h2>
+<hr />
+
+<div>
+    <form method="post">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-8">
+                    <input id="searchText" name="SearchText" class="form-control" />
+                </div>
+                <div class="col-md-4">
+                    <button type="button" id="btnSearch" class="btn btn-primary">Search</button>
+                    <button type="button" id="btnReset" class="btn btn-success">Reset</button>
+                    <button type="button" id="btnNew" class="btn btn-info">New</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<br />
+
+
+<div>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-inverse">
+            <tr>
+                <th class="font-weight-bold">Students Name</th>
+                <th class="font-weight-bold">Registration Number</th>
+                <th class="font-weight-bold">Department</th>
+                <th class="font-weight-bold">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Count() > 0)
+            {
+                foreach (var student in Model)
+                {
+                    <tr>
+                        <td>@student.Name</td>
+                        <td>@student.RegistrationNo</td>
+                        <td>@student.Department.Name</td>
+                        <td>
+                            <button class="btn btn-primary btnEdit" data-id="@student.Id">Edit</button>
+                            <button class="btn btn-danger btnDelete" data-id="@student.Id">Delete</button>
+                            <button class="btn btn-success btnDetails" data-id="@student.Id">View Details</button>
+                        </td>
+                    </tr>
+
+                }
+            }
+            else
+            {
+                <tr>
+                    <td class="text-danger" colspan="5">
+                        No Students found
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+
+<script>
+    $("#btnSearch").click(function () {
+
+        var searchValue = $("#searchText").val();
+
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("StudentTable", "Students")',
+            data: {
+                searchText: searchValue
+            }
+
+        }).done(function (response) {
+            $("#tableContainer").html(response);
+
+        }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("Fail");
+        });
+    });
+
+
+    $("#btnReset").click(function () {
+        var searchValue = '';
+
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("StudentTable", "Students")',
+            data: {
+                searchText: searchValue
+            }
+        }).done(function (response) {
+            $("#tableContainer").html(response);
+        }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("Fail");
+        });
+    });
+
+    $("#btnNew").click(function () {
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("Create", "Students")',
+
+        }).done(function (response) {
+            $("#actionContainer").html(response);
+
+        }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("Fail");
+        });
+    });
+
+    $(".btnEdit").click(function () {
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("Edit", "Students")',
+            data: {
+                Id: $(this).attr('data-id')
+            }
+
+        }).done(function (response) {
+            $("#actionContainer").html(response);
+            focusAction("actionContainer");
+
+        }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("Fail");
+        });
+    });
+
+    $(".btnDelete").click(function () {
+
+        var deleteConfirmed = confirm("Are you sure to delete this department?");
+
+        if (deleteConfirmed) {
+            $.ajax({
+            type: 'POST',
+            url: '@Url.Action("Delete", "Students")',
+            data: {
+                Id: $(this).attr('data-id')
+            }
+
+            }).done(function (response) {
+                $("#tableContainer").html(response);
+                focusAction("actionContainer");
+
+            }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("Fail");
+            });
+        }
+    });
+
+    $(".btnDetails").click(function () {
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("Details", "Students")',
+            data: {
+                Id: $(this).attr('data-id')
+            }
+
+        }).done(function (response) {
+            $("#actionContainer").html(response);
+            focusAction("actionContainer");
+
+        }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("Fail");
+        });
+    });
+
+    function focusAction() {
+        $('html, body').animate({
+            scrollTop: $("#actionContainer") //.offset().top + 0
+        }, 1000);
+    }
+</script>
